@@ -34,6 +34,11 @@ public class HealthInsuranceServiceImpl implements HealthInsuranceService {
     EmployeeService employeeService;
 
     @Override
+    public List<HealthInsurance> getAllHealthInsurance() {
+        return em.createQuery("from HealthInsurance", HealthInsurance.class).getResultList();
+    }
+
+    @Override
     public List<HealthInsuranceDTO> getHealthInsuranceByEmployeeId(int employeeId) {
         TypedQuery<HealthInsurance> namedQuery = em.createNamedQuery(HealthInsurance.GET_ALL_HEALTH_INSURANCE_BY_EMPLOYEE_ID, HealthInsurance.class);
         namedQuery.setParameter(EMPLOYEE_ID_PARAMETER_NAME_SQL,employeeId);

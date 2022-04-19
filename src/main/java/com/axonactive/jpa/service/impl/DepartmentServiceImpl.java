@@ -74,6 +74,4 @@ public class DepartmentServiceImpl implements DepartmentService {
         em.merge(department);
         return department;
     }
-
-
 }

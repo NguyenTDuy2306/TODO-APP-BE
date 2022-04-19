@@ -54,7 +54,7 @@ class HealthInsuranceServiceImplTest {
     @BeforeEach
     public void init(){
         employee = new Employee(3, "E", "G", "F",
-                LocalDate.of(2021, 9, 11)
+                LocalDate.of(2021, 9, 11), 9
                 , Gender.FEMALE, 1200, new Department(8, "DeptC", LocalDate.of(2018, 1, 10)));
 
         healthInsurance1 = new HealthInsurance(1,employee,"A","Tan Binh","BV Quan 3",LocalDate.of(2021,1,2));

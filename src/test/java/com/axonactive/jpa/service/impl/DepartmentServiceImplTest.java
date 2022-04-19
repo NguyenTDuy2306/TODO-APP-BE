@@ -164,7 +164,6 @@ class DepartmentServiceImplTest {
 
         verify(entityManager,times(1)).merge(expectedUpdatedDepartment);
         assertEquals(actualUpdateDepartment,expectedUpdatedDepartment);
-
-
     }
+
 }

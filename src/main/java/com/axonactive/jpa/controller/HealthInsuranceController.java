@@ -19,6 +19,12 @@ public class HealthInsuranceController {
 
 
     @GET
+    @Path("get-all")
+    public Response getAllHealthInsurance(){
+        return Response.ok(healthInsuranceService.getAllHealthInsurance()).build();
+    }
+
+    @GET
     public Response getHealthInsuranceByEmployeeId(@PathParam("employeeId") int employeeId){
         return Response.ok(healthInsuranceService.getHealthInsuranceByEmployeeId(employeeId)).build();
     }

@@ -1,6 +1,11 @@
 package com.axonactive.jpa.entities;
 
 import com.axonactive.jpa.enumerate.Gender;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +19,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Data
 @Table(name = "employee")
 @NamedQuery(name = Employee.GET_ALL_BY_DEPT_ID_AND_EMPLOYEE_ID, query = "from Employee e where e.department.id = :departmentId")
 @NamedQuery(name = Employee.GET_EMPLOYEE_BY_DEPTID_AND_EMPLOYEEID, query = "from Employee e where e.department.id = :departmentId and e.id = :employeeId")
@@ -41,8 +47,14 @@ public class Employee {
     @Column(name = "last_name", nullable = false, columnDefinition = "varchar(20)")
     private String lastName;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
+
+    @Transient
+    private int age;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -50,6 +62,9 @@ public class Employee {
 
     @Column(nullable = false)
     private double salary;
+
+//    @Embedded
+//    private ContactInfo contactInfo;
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = false)

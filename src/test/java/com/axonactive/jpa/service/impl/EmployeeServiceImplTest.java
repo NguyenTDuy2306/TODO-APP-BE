@@ -52,18 +52,18 @@ class EmployeeServiceImplTest {
     @BeforeEach
     public void init() {
         employee1 = new Employee(2, "A", "B", "C",
-                LocalDate.of(2020, 11, 9)
+                LocalDate.of(2020, 11, 9), 9
                 , Gender.FEMALE, 1000, new Department(10, "DeptA", LocalDate.of(2019, 10, 8)));
 
         employee2 = new Employee(3, "E", "G", "F",
-                LocalDate.of(2021, 9, 11)
+                LocalDate.of(2021, 9, 11), 9
                 , Gender.FEMALE, 1200, new Department(8, "DeptC", LocalDate.of(2018, 1, 10)));
         employeeList = Arrays.asList(employee1, employee2);
     }
 
     @Test
     void getEmployeeByIdFromDataBase_FindRightId_ShouldReturnEmployee() {
-        int employeeIdToBeFind = 3;
+        int employeeIdToBeFind = 1;
         Employee expectedEmployee = getEmployeeFromTestListById(employeeIdToBeFind);
         when(entityManager.find(Employee.class, employeeIdToBeFind))
                 .thenReturn(expectedEmployee);
@@ -71,8 +71,11 @@ class EmployeeServiceImplTest {
         assertEquals(expectedEmployee, actualEmployee);
     }
 
+
+
+
     @Test
-    void getEmployeeByIdFromDataBase_FindWorngId_ShouldReturnNull() {
+    void getEmployeeByIdFromDataBase_FindWrongId_ShouldReturnNull() {
         int employeeIdToBeFind = 11;
         when(entityManager.find(Employee.class, employeeIdToBeFind))
                 .thenReturn(null);
@@ -82,9 +85,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void getEmployeeById_FindRightId_ShouldReturnEmployeeDTO() {
-        //input data
-        int employeeIdToBeFind = 2;
-        //expected
+        int employeeIdToBeFind = 3;
         Employee expectedEmployee = getEmployeeFromTestListById(employeeIdToBeFind);
         EmployeeDTO expectedEmployeeDTO = employeeToEmployeeDTO(expectedEmployee);
 

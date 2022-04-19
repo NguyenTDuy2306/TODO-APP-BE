@@ -3,6 +3,7 @@ package com.axonactive.jpa.service;
 import com.axonactive.jpa.controller.request.EmployeeRequest;
 import com.axonactive.jpa.entities.Employee;
 import com.axonactive.jpa.service.dto.EmployeeDTO;
+import com.axonactive.jpa.service.dto.EmployeeWithDepartmentDTO;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface EmployeeService {
     void deleteEmployeeById(int employeeId);
     EmployeeDTO addEmployee(EmployeeRequest employeeRequest);
     EmployeeDTO updateEmployeeById(int employeeId, EmployeeRequest employeeRequest);
+    List<Employee> getAllEmployee ();
+    List<EmployeeWithDepartmentDTO> getEmployeeWithDepartmentIfo();
 }

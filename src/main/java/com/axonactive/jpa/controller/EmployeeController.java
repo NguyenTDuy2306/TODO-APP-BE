@@ -2,6 +2,8 @@ package com.axonactive.jpa.controller;
 
 import com.axonactive.jpa.controller.request.EmployeeRequest;
 import com.axonactive.jpa.service.EmployeeService;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -17,7 +19,7 @@ public class EmployeeController {
 
     @GET
     public Response getAllEmployees(){
-        return Response.ok(employeeService.getAllEmployees()).build();
+        return Response.ok(employeeService.getAllEmployee()).build();
     }
 
     @GET
@@ -45,4 +47,10 @@ public class EmployeeController {
     public Response updateEmployeeById(@PathParam("employeeId") int employeeId, EmployeeRequest employeeRequest){
         return Response.ok(employeeService.updateEmployeeById(employeeId,employeeRequest)).build();
     }
+    @GET
+    @Path("employee-with-department")
+    public Response getEmployeeWithDepartment(){
+        return Response.ok(employeeService.getEmployeeWithDepartmentIfo()).build();
+    }
+
 }

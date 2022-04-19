@@ -1,0 +1,3 @@
+com\axonactive\jpa\service\impl\EmployeeServiceImplTest.class
+com\axonactive\jpa\service\impl\DepartmentServiceImplTest.class
+com\axonactive\jpa\service\impl\HealthInsuranceServiceImplTest.class

@@ -29,10 +29,10 @@ public class DepartmentController {
 
 
     @POST
+    @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addDepartment(DepartmentRequest departmentRequest){
         return Response.ok(departmentService.addDepartment(departmentRequest)).build();
-
     }
 
     @DELETE
@@ -47,7 +47,4 @@ public class DepartmentController {
     public Response updateDepartment(@PathParam("id") int id, DepartmentRequest departmentRequest){
         return Response.ok(departmentService.updateDepartment(id,departmentRequest)).build();
     }
-
-
-
 }
